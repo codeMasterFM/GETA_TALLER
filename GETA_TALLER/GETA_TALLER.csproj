@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{600520A8-4503-44DC-85F8-90B85F96B293}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>GETA_TALLER</RootNamespace>
+    <AssemblyName>GETA_TALLER</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1484.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1484.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1484.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1484.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1484.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SqlClient, Version=4.6.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Data.SqlClient.4.8.3\lib\net461\System.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GETA_tallerDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GETA_tallerDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Model\detalle_factura1_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\detalle_factura_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\factura_detalle10_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\factura_detalle11_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\factura_detalle1_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\factura_detalle2_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\factura_detalle3_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\factura_detalle4_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\factura_detalle5_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\factura_detalle6_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\factura_detalle7_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\factura_detalle8_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\factura_detalle9_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\factura_detalleA1_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\factura_detalleA2_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\factura_detalleA3_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\factura_detalle_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\factura_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\GETA_cliente.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\GETA_detalle_reparacion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\GETA_factura.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\GETA_inventario_repuesto.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\GETA_mecanico.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\GETA_servicio.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\GETA_taller.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\GETA_usuario.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\GETA_vehiculo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\id_mecanico_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\proceso_factura1_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\proceso_factura_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="pruebas\combobox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pruebas\combobox.Designer.cs">
+      <DependentUpon>combobox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="View\administrador\administrador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\administrador\administrador.Designer.cs">
+      <DependentUpon>administrador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Cliente\Cliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Cliente\Cliente.Designer.cs">
+      <DependentUpon>Cliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Detalle\DetalleDeVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Detalle\DetalleDeVenta.Designer.cs">
+      <DependentUpon>DetalleDeVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Detalle\detalle_de_reparacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Detalle\detalle_de_reparacion.Designer.cs">
+      <DependentUpon>detalle_de_reparacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Detalle\Mecanico_estado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Detalle\Mecanico_estado.Designer.cs">
+      <DependentUpon>Mecanico_estado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Factura\Factura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Factura\Factura.Designer.cs">
+      <DependentUpon>Factura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Factura\Factura1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Factura\Factura1.Designer.cs">
+      <DependentUpon>Factura1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Factura\General_facturaA1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Factura\General_facturaA1.Designer.cs">
+      <DependentUpon>General_facturaA1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Factura\Generar_factura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Factura\Generar_factura.Designer.cs">
+      <DependentUpon>Generar_factura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Inverntario\Invenario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Inverntario\Invenario.Designer.cs">
+      <DependentUpon>Invenario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Inverntario\Mecanico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Inverntario\Mecanico.Designer.cs">
+      <DependentUpon>Mecanico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Mecanico\Mecanico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Mecanico\Mecanico.Designer.cs">
+      <DependentUpon>Mecanico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Panel\ADmecanico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Panel\ADmecanico.Designer.cs">
+      <DependentUpon>ADmecanico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Panel\administrar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Panel\administrar.Designer.cs">
+      <DependentUpon>administrar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Panel\Panel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Panel\Panel.Designer.cs">
+      <DependentUpon>Panel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Panel\PanelA1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Panel\PanelA1.Designer.cs">
+      <DependentUpon>PanelA1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Servicio\Servicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Servicio\Servicio.Designer.cs">
+      <DependentUpon>Servicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Taller\Taller.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Taller\Taller.Designer.cs">
+      <DependentUpon>Taller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usuario\Usuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Usuario\Usuario.Designer.cs">
+      <DependentUpon>Usuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Usuario\Usuario_crud.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Usuario\Usuario_crud.Designer.cs">
+      <DependentUpon>Usuario_crud.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Vehiculo\Vehiculo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Vehiculo\Vehiculo.Designer.cs">
+      <DependentUpon>Vehiculo.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="pruebas\combobox.resx">
+      <DependentUpon>combobox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report1.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\administrador\administrador.resx">
+      <DependentUpon>administrador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Cliente\Cliente.resx">
+      <DependentUpon>Cliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Detalle\DetalleDeVenta.resx">
+      <DependentUpon>DetalleDeVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Detalle\detalle_de_reparacion.resx">
+      <DependentUpon>detalle_de_reparacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Detalle\Mecanico_estado.resx">
+      <DependentUpon>Mecanico_estado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Factura\Factura.resx">
+      <DependentUpon>Factura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Factura\Factura1.resx">
+      <DependentUpon>Factura1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Factura\General_facturaA1.resx">
+      <DependentUpon>General_facturaA1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Factura\Generar_factura.resx">
+      <DependentUpon>Generar_factura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Inverntario\Invenario.resx">
+      <DependentUpon>Invenario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Inverntario\Mecanico.resx">
+      <DependentUpon>Mecanico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Mecanico\Mecanico.resx">
+      <DependentUpon>Mecanico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Panel\ADmecanico.resx">
+      <DependentUpon>ADmecanico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Panel\administrar.resx">
+      <DependentUpon>administrar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Panel\Panel.resx">
+      <DependentUpon>Panel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Panel\PanelA1.resx">
+      <DependentUpon>PanelA1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Servicio\Servicio.resx">
+      <DependentUpon>Servicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Taller\Taller.resx">
+      <DependentUpon>Taller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Usuario\Usuario.resx">
+      <DependentUpon>Usuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Usuario\Usuario_crud.resx">
+      <DependentUpon>Usuario_crud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Vehiculo\Vehiculo.resx">
+      <DependentUpon>Vehiculo.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="GETA_tallerDataSet.xsc">
+      <DependentUpon>GETA_tallerDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="GETA_tallerDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GETA_tallerDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GETA_tallerDataSet.xss">
+      <DependentUpon>GETA_tallerDataSet.xsd</DependentUpon>
+    </None>
+    <EntityDeploy Include="Model\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controlle\Cliente\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\taller.png" />
+    <None Include="Resources\archivo.png" />
+    <None Include="Resources\pago-en-efectivo.png" />
+    <None Include="Resources\fondos.jpg" />
+    <None Include="Resources\descarga.jpg" />
+    <None Include="Resources\descarga1.jpg" />
+    <Content Include="Model\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\general_factura.png" />
+    <None Include="Resources\agregar-usuario %281%29.png" />
+    <None Include="Resources\entrar.png" />
+    <None Include="Resources\factura1.png" />
+    <None Include="Resources\icons8-mechanic-skin-type-3-48.png" />
+    <None Include="Resources\factura.png" />
+    <None Include="Resources\detalles.png" />
+    <None Include="Resources\carrorevision.png" />
+    <None Include="Resources\coche.png" />
+    <None Include="Resources\agregar-usuario.png" />
+    <None Include="Resources\inventario.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

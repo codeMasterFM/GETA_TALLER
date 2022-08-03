@@ -1,0 +1,829 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GETA_tallerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="GETA_cliente">
+    <Key>
+      <PropertyRef Name="id_cliente" />
+    </Key>
+    <Property Name="id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOMBRE" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="APELLIDO" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="DIRECCION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TELEFONO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FECHA_REGISTRO" Type="DateTimeOffset" Precision="7" />
+    <Property Name="ESTADO" Type="Int32" />
+    <NavigationProperty Name="GETA_factura" Relationship="Self.FK__GETA_fact__id_cl__37A5467C" FromRole="GETA_cliente" ToRole="GETA_factura" />
+    <NavigationProperty Name="GETA_vehiculo" Relationship="Self.FK__GETA_vehi__id_cl__4222D4EF" FromRole="GETA_cliente" ToRole="GETA_vehiculo" />
+  </EntityType>
+  <EntityType Name="GETA_detalle_reparacion">
+    <Key>
+      <PropertyRef Name="id_detalle" />
+    </Key>
+    <Property Name="id_detalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CANTIDAD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="MANO_OBRA" Type="Double" />
+    <Property Name="COMETARIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="id_servicio" Type="Int32" />
+    <Property Name="id_inventario" Type="Int32" />
+    <Property Name="ESTADO" Type="Int32" />
+    <Property Name="id_mecanico" Type="Int32" />
+    <Property Name="id_vehiculo" Type="Int32" />
+    <NavigationProperty Name="GETA_inventario_repuesto" Relationship="Self.FK__GETA_deta__id_in__33D4B598" FromRole="GETA_detalle_reparacion" ToRole="GETA_inventario_repuesto" />
+    <NavigationProperty Name="GETA_mecanico" Relationship="Self.FK__GETA_deta__id_me__34C8D9D1" FromRole="GETA_detalle_reparacion" ToRole="GETA_mecanico" />
+    <NavigationProperty Name="GETA_servicio" Relationship="Self.FK__GETA_deta__id_se__35BCFE0A" FromRole="GETA_detalle_reparacion" ToRole="GETA_servicio" />
+    <NavigationProperty Name="GETA_vehiculo" Relationship="Self.FK__GETA_deta__id_ve__36B12243" FromRole="GETA_detalle_reparacion" ToRole="GETA_vehiculo" />
+    <NavigationProperty Name="GETA_factura" Relationship="Self.FK__GETA_fact__id_de__38996AB5" FromRole="GETA_detalle_reparacion" ToRole="GETA_factura" />
+    <NavigationProperty Name="GETA_inventario_repuesto1" Relationship="Self.FK__GETA_inve__id_de__3D5E1FD2" FromRole="GETA_detalle_reparacion" ToRole="GETA_inventario_repuesto" />
+    <NavigationProperty Name="GETA_mecanico1" Relationship="Self.FK__GETA_meca__id_de__3E52440B" FromRole="GETA_detalle_reparacion" ToRole="GETA_mecanico" />
+  </EntityType>
+  <EntityType Name="GETA_factura">
+    <Key>
+      <PropertyRef Name="id_factura" />
+    </Key>
+    <Property Name="id_factura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SUBTOTAL" Type="Double" />
+    <Property Name="ITB" Type="Double" />
+    <Property Name="TOTAL" Type="Double" />
+    <Property Name="fecha_salida" Type="DateTime" Precision="3" />
+    <Property Name="id_mecanico" Type="Int32" />
+    <Property Name="id_cliente" Type="Int32" />
+    <Property Name="id_taller" Type="Int32" />
+    <Property Name="id_vehiculo" Type="Int32" />
+    <Property Name="PAGO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="ESTADO" Type="Int32" />
+    <Property Name="detalle" Type="Int32" />
+    <Property Name="id_inventario" Type="Int32" />
+    <Property Name="id_detalle" Type="Int32" />
+    <NavigationProperty Name="GETA_cliente" Relationship="Self.FK__GETA_fact__id_cl__37A5467C" FromRole="GETA_factura" ToRole="GETA_cliente" />
+    <NavigationProperty Name="GETA_detalle_reparacion" Relationship="Self.FK__GETA_fact__id_de__38996AB5" FromRole="GETA_factura" ToRole="GETA_detalle_reparacion" />
+    <NavigationProperty Name="GETA_inventario_repuesto" Relationship="Self.FK__GETA_fact__id_in__398D8EEE" FromRole="GETA_factura" ToRole="GETA_inventario_repuesto" />
+    <NavigationProperty Name="GETA_mecanico" Relationship="Self.FK__GETA_fact__id_me__3A81B327" FromRole="GETA_factura" ToRole="GETA_mecanico" />
+    <NavigationProperty Name="GETA_taller" Relationship="Self.FK__GETA_fact__id_ta__3B75D760" FromRole="GETA_factura" ToRole="GETA_taller" />
+    <NavigationProperty Name="GETA_vehiculo" Relationship="Self.FK__GETA_fact__id_ve__3C69FB99" FromRole="GETA_factura" ToRole="GETA_vehiculo" />
+  </EntityType>
+  <EntityType Name="GETA_inventario_repuesto">
+    <Key>
+      <PropertyRef Name="id_inventario" />
+    </Key>
+    <Property Name="id_inventario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CATEGORIA" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="NOMBRE_PIEZAS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CANTIDAD_DISPONIBLE" Type="Int32" />
+    <Property Name="PRECIO" Type="Double" />
+    <Property Name="ESTADO" Type="Int32" />
+    <Property Name="id_detalle" Type="Int32" />
+    <NavigationProperty Name="GETA_detalle_reparacion" Relationship="Self.FK__GETA_deta__id_in__33D4B598" FromRole="GETA_inventario_repuesto" ToRole="GETA_detalle_reparacion" />
+    <NavigationProperty Name="GETA_detalle_reparacion1" Relationship="Self.FK__GETA_inve__id_de__3D5E1FD2" FromRole="GETA_inventario_repuesto" ToRole="GETA_detalle_reparacion" />
+    <NavigationProperty Name="GETA_factura" Relationship="Self.FK__GETA_fact__id_in__398D8EEE" FromRole="GETA_inventario_repuesto" ToRole="GETA_factura" />
+  </EntityType>
+  <EntityType Name="GETA_mecanico">
+    <Key>
+      <PropertyRef Name="id_mecanico" />
+    </Key>
+    <Property Name="id_mecanico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NOMBRE" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="APELLID0" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="CEDULA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ESTADO" Type="Int32" />
+    <Property Name="id_detalle" Type="Int32" />
+    <Property Name="ELIMINAR" Type="Int32" />
+    <Property Name="id_vehiculo" Type="Int32" />
+    <NavigationProperty Name="GETA_detalle_reparacion" Relationship="Self.FK__GETA_deta__id_me__34C8D9D1" FromRole="GETA_mecanico" ToRole="GETA_detalle_reparacion" />
+    <NavigationProperty Name="GETA_detalle_reparacion1" Relationship="Self.FK__GETA_meca__id_de__3E52440B" FromRole="GETA_mecanico" ToRole="GETA_detalle_reparacion" />
+    <NavigationProperty Name="GETA_factura" Relationship="Self.FK__GETA_fact__id_me__3A81B327" FromRole="GETA_mecanico" ToRole="GETA_factura" />
+    <NavigationProperty Name="GETA_vehiculo" Relationship="Self.FK__GETA_meca__id_ve__3F466844" FromRole="GETA_mecanico" ToRole="GETA_vehiculo" />
+    <NavigationProperty Name="GETA_usuario" Relationship="Self.FK__GETA_usua__id_me__412EB0B6" FromRole="GETA_mecanico" ToRole="GETA_usuario" />
+  </EntityType>
+  <EntityType Name="GETA_servicio">
+    <Key>
+      <PropertyRef Name="id_servicio" />
+    </Key>
+    <Property Name="id_servicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EVALUCION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PRECIO" Type="Int32" />
+    <Property Name="id_vehiculo" Type="Int32" />
+    <Property Name="ESTADO" Type="Int32" />
+    <NavigationProperty Name="GETA_detalle_reparacion" Relationship="Self.FK__GETA_deta__id_se__35BCFE0A" FromRole="GETA_servicio" ToRole="GETA_detalle_reparacion" />
+    <NavigationProperty Name="GETA_vehiculo" Relationship="Self.FK__GETA_serv__id_ve__403A8C7D" FromRole="GETA_servicio" ToRole="GETA_vehiculo" />
+  </EntityType>
+  <EntityType Name="GETA_taller">
+    <Key>
+      <PropertyRef Name="id_taller" />
+    </Key>
+    <Property Name="id_taller" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RNC" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="TELEFONO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="CORREO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="GETA_factura" Relationship="Self.FK__GETA_fact__id_ta__3B75D760" FromRole="GETA_taller" ToRole="GETA_factura" />
+  </EntityType>
+  <EntityType Name="GETA_usuario">
+    <Key>
+      <PropertyRef Name="id_usuario" />
+    </Key>
+    <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ROL" Type="Int32" />
+    <Property Name="NOMBRE" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="USUARIO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="CONTRASENA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="id_mecanico" Type="Int32" />
+    <Property Name="ESTADO" Type="Int32" />
+    <NavigationProperty Name="GETA_mecanico" Relationship="Self.FK__GETA_usua__id_me__412EB0B6" FromRole="GETA_usuario" ToRole="GETA_mecanico" />
+  </EntityType>
+  <EntityType Name="GETA_vehiculo">
+    <Key>
+      <PropertyRef Name="id_vehiculo" />
+    </Key>
+    <Property Name="id_vehiculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MATRICULA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODELO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="COLOR" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="id_cliente" Type="Int32" />
+    <Property Name="ESTADO" Type="Int32" />
+    <NavigationProperty Name="GETA_cliente" Relationship="Self.FK__GETA_vehi__id_cl__4222D4EF" FromRole="GETA_vehiculo" ToRole="GETA_cliente" />
+    <NavigationProperty Name="GETA_detalle_reparacion" Relationship="Self.FK__GETA_deta__id_ve__36B12243" FromRole="GETA_vehiculo" ToRole="GETA_detalle_reparacion" />
+    <NavigationProperty Name="GETA_factura" Relationship="Self.FK__GETA_fact__id_ve__3C69FB99" FromRole="GETA_vehiculo" ToRole="GETA_factura" />
+    <NavigationProperty Name="GETA_mecanico" Relationship="Self.FK__GETA_meca__id_ve__3F466844" FromRole="GETA_vehiculo" ToRole="GETA_mecanico" />
+    <NavigationProperty Name="GETA_servicio" Relationship="Self.FK__GETA_serv__id_ve__403A8C7D" FromRole="GETA_vehiculo" ToRole="GETA_servicio" />
+  </EntityType>
+  <Association Name="FK__GETA_fact__id_cl__37A5467C">
+    <End Role="GETA_cliente" Type="Self.GETA_cliente" Multiplicity="0..1" />
+    <End Role="GETA_factura" Type="Self.GETA_factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_cliente">
+        <PropertyRef Name="id_cliente" />
+      </Principal>
+      <Dependent Role="GETA_factura">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_vehi__id_cl__4222D4EF">
+    <End Role="GETA_cliente" Type="Self.GETA_cliente" Multiplicity="0..1" />
+    <End Role="GETA_vehiculo" Type="Self.GETA_vehiculo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_cliente">
+        <PropertyRef Name="id_cliente" />
+      </Principal>
+      <Dependent Role="GETA_vehiculo">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_deta__id_in__33D4B598">
+    <End Role="GETA_inventario_repuesto" Type="Self.GETA_inventario_repuesto" Multiplicity="0..1" />
+    <End Role="GETA_detalle_reparacion" Type="Self.GETA_detalle_reparacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_inventario_repuesto">
+        <PropertyRef Name="id_inventario" />
+      </Principal>
+      <Dependent Role="GETA_detalle_reparacion">
+        <PropertyRef Name="id_inventario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_deta__id_me__34C8D9D1">
+    <End Role="GETA_mecanico" Type="Self.GETA_mecanico" Multiplicity="0..1" />
+    <End Role="GETA_detalle_reparacion" Type="Self.GETA_detalle_reparacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_mecanico">
+        <PropertyRef Name="id_mecanico" />
+      </Principal>
+      <Dependent Role="GETA_detalle_reparacion">
+        <PropertyRef Name="id_mecanico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_deta__id_se__35BCFE0A">
+    <End Role="GETA_servicio" Type="Self.GETA_servicio" Multiplicity="0..1" />
+    <End Role="GETA_detalle_reparacion" Type="Self.GETA_detalle_reparacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_servicio">
+        <PropertyRef Name="id_servicio" />
+      </Principal>
+      <Dependent Role="GETA_detalle_reparacion">
+        <PropertyRef Name="id_servicio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_deta__id_ve__36B12243">
+    <End Role="GETA_vehiculo" Type="Self.GETA_vehiculo" Multiplicity="0..1" />
+    <End Role="GETA_detalle_reparacion" Type="Self.GETA_detalle_reparacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_vehiculo">
+        <PropertyRef Name="id_vehiculo" />
+      </Principal>
+      <Dependent Role="GETA_detalle_reparacion">
+        <PropertyRef Name="id_vehiculo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_fact__id_de__38996AB5">
+    <End Role="GETA_detalle_reparacion" Type="Self.GETA_detalle_reparacion" Multiplicity="0..1" />
+    <End Role="GETA_factura" Type="Self.GETA_factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_detalle_reparacion">
+        <PropertyRef Name="id_detalle" />
+      </Principal>
+      <Dependent Role="GETA_factura">
+        <PropertyRef Name="id_detalle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_inve__id_de__3D5E1FD2">
+    <End Role="GETA_detalle_reparacion" Type="Self.GETA_detalle_reparacion" Multiplicity="0..1" />
+    <End Role="GETA_inventario_repuesto" Type="Self.GETA_inventario_repuesto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_detalle_reparacion">
+        <PropertyRef Name="id_detalle" />
+      </Principal>
+      <Dependent Role="GETA_inventario_repuesto">
+        <PropertyRef Name="id_detalle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_meca__id_de__3E52440B">
+    <End Role="GETA_detalle_reparacion" Type="Self.GETA_detalle_reparacion" Multiplicity="0..1" />
+    <End Role="GETA_mecanico" Type="Self.GETA_mecanico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_detalle_reparacion">
+        <PropertyRef Name="id_detalle" />
+      </Principal>
+      <Dependent Role="GETA_mecanico">
+        <PropertyRef Name="id_detalle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_fact__id_in__398D8EEE">
+    <End Role="GETA_inventario_repuesto" Type="Self.GETA_inventario_repuesto" Multiplicity="0..1" />
+    <End Role="GETA_factura" Type="Self.GETA_factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_inventario_repuesto">
+        <PropertyRef Name="id_inventario" />
+      </Principal>
+      <Dependent Role="GETA_factura">
+        <PropertyRef Name="id_inventario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_fact__id_me__3A81B327">
+    <End Role="GETA_mecanico" Type="Self.GETA_mecanico" Multiplicity="0..1" />
+    <End Role="GETA_factura" Type="Self.GETA_factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_mecanico">
+        <PropertyRef Name="id_mecanico" />
+      </Principal>
+      <Dependent Role="GETA_factura">
+        <PropertyRef Name="id_mecanico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_fact__id_ta__3B75D760">
+    <End Role="GETA_taller" Type="Self.GETA_taller" Multiplicity="0..1" />
+    <End Role="GETA_factura" Type="Self.GETA_factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_taller">
+        <PropertyRef Name="id_taller" />
+      </Principal>
+      <Dependent Role="GETA_factura">
+        <PropertyRef Name="id_taller" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_fact__id_ve__3C69FB99">
+    <End Role="GETA_vehiculo" Type="Self.GETA_vehiculo" Multiplicity="0..1" />
+    <End Role="GETA_factura" Type="Self.GETA_factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_vehiculo">
+        <PropertyRef Name="id_vehiculo" />
+      </Principal>
+      <Dependent Role="GETA_factura">
+        <PropertyRef Name="id_vehiculo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_meca__id_ve__3F466844">
+    <End Role="GETA_vehiculo" Type="Self.GETA_vehiculo" Multiplicity="0..1" />
+    <End Role="GETA_mecanico" Type="Self.GETA_mecanico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_vehiculo">
+        <PropertyRef Name="id_vehiculo" />
+      </Principal>
+      <Dependent Role="GETA_mecanico">
+        <PropertyRef Name="id_vehiculo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_usua__id_me__412EB0B6">
+    <End Role="GETA_mecanico" Type="Self.GETA_mecanico" Multiplicity="0..1" />
+    <End Role="GETA_usuario" Type="Self.GETA_usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_mecanico">
+        <PropertyRef Name="id_mecanico" />
+      </Principal>
+      <Dependent Role="GETA_usuario">
+        <PropertyRef Name="id_mecanico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_serv__id_ve__403A8C7D">
+    <End Role="GETA_vehiculo" Type="Self.GETA_vehiculo" Multiplicity="0..1" />
+    <End Role="GETA_servicio" Type="Self.GETA_servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_vehiculo">
+        <PropertyRef Name="id_vehiculo" />
+      </Principal>
+      <Dependent Role="GETA_servicio">
+        <PropertyRef Name="id_vehiculo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GETA_tallerEntities4" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="GETA_cliente" EntityType="Self.GETA_cliente" />
+    <EntitySet Name="GETA_detalle_reparacion" EntityType="Self.GETA_detalle_reparacion" />
+    <EntitySet Name="GETA_factura" EntityType="Self.GETA_factura" />
+    <EntitySet Name="GETA_inventario_repuesto" EntityType="Self.GETA_inventario_repuesto" />
+    <EntitySet Name="GETA_mecanico" EntityType="Self.GETA_mecanico" />
+    <EntitySet Name="GETA_servicio" EntityType="Self.GETA_servicio" />
+    <EntitySet Name="GETA_taller" EntityType="Self.GETA_taller" />
+    <EntitySet Name="GETA_usuario" EntityType="Self.GETA_usuario" />
+    <EntitySet Name="GETA_vehiculo" EntityType="Self.GETA_vehiculo" />
+    <AssociationSet Name="FK__GETA_fact__id_cl__37A5467C" Association="Self.FK__GETA_fact__id_cl__37A5467C">
+      <End Role="GETA_cliente" EntitySet="GETA_cliente" />
+      <End Role="GETA_factura" EntitySet="GETA_factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_vehi__id_cl__4222D4EF" Association="Self.FK__GETA_vehi__id_cl__4222D4EF">
+      <End Role="GETA_cliente" EntitySet="GETA_cliente" />
+      <End Role="GETA_vehiculo" EntitySet="GETA_vehiculo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_deta__id_in__33D4B598" Association="Self.FK__GETA_deta__id_in__33D4B598">
+      <End Role="GETA_inventario_repuesto" EntitySet="GETA_inventario_repuesto" />
+      <End Role="GETA_detalle_reparacion" EntitySet="GETA_detalle_reparacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_deta__id_me__34C8D9D1" Association="Self.FK__GETA_deta__id_me__34C8D9D1">
+      <End Role="GETA_mecanico" EntitySet="GETA_mecanico" />
+      <End Role="GETA_detalle_reparacion" EntitySet="GETA_detalle_reparacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_deta__id_se__35BCFE0A" Association="Self.FK__GETA_deta__id_se__35BCFE0A">
+      <End Role="GETA_servicio" EntitySet="GETA_servicio" />
+      <End Role="GETA_detalle_reparacion" EntitySet="GETA_detalle_reparacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_deta__id_ve__36B12243" Association="Self.FK__GETA_deta__id_ve__36B12243">
+      <End Role="GETA_vehiculo" EntitySet="GETA_vehiculo" />
+      <End Role="GETA_detalle_reparacion" EntitySet="GETA_detalle_reparacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_fact__id_de__38996AB5" Association="Self.FK__GETA_fact__id_de__38996AB5">
+      <End Role="GETA_detalle_reparacion" EntitySet="GETA_detalle_reparacion" />
+      <End Role="GETA_factura" EntitySet="GETA_factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_inve__id_de__3D5E1FD2" Association="Self.FK__GETA_inve__id_de__3D5E1FD2">
+      <End Role="GETA_detalle_reparacion" EntitySet="GETA_detalle_reparacion" />
+      <End Role="GETA_inventario_repuesto" EntitySet="GETA_inventario_repuesto" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_meca__id_de__3E52440B" Association="Self.FK__GETA_meca__id_de__3E52440B">
+      <End Role="GETA_detalle_reparacion" EntitySet="GETA_detalle_reparacion" />
+      <End Role="GETA_mecanico" EntitySet="GETA_mecanico" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_fact__id_in__398D8EEE" Association="Self.FK__GETA_fact__id_in__398D8EEE">
+      <End Role="GETA_inventario_repuesto" EntitySet="GETA_inventario_repuesto" />
+      <End Role="GETA_factura" EntitySet="GETA_factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_fact__id_me__3A81B327" Association="Self.FK__GETA_fact__id_me__3A81B327">
+      <End Role="GETA_mecanico" EntitySet="GETA_mecanico" />
+      <End Role="GETA_factura" EntitySet="GETA_factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_fact__id_ta__3B75D760" Association="Self.FK__GETA_fact__id_ta__3B75D760">
+      <End Role="GETA_taller" EntitySet="GETA_taller" />
+      <End Role="GETA_factura" EntitySet="GETA_factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_fact__id_ve__3C69FB99" Association="Self.FK__GETA_fact__id_ve__3C69FB99">
+      <End Role="GETA_vehiculo" EntitySet="GETA_vehiculo" />
+      <End Role="GETA_factura" EntitySet="GETA_factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_meca__id_ve__3F466844" Association="Self.FK__GETA_meca__id_ve__3F466844">
+      <End Role="GETA_vehiculo" EntitySet="GETA_vehiculo" />
+      <End Role="GETA_mecanico" EntitySet="GETA_mecanico" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_usua__id_me__412EB0B6" Association="Self.FK__GETA_usua__id_me__412EB0B6">
+      <End Role="GETA_mecanico" EntitySet="GETA_mecanico" />
+      <End Role="GETA_usuario" EntitySet="GETA_usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_serv__id_ve__403A8C7D" Association="Self.FK__GETA_serv__id_ve__403A8C7D">
+      <End Role="GETA_vehiculo" EntitySet="GETA_vehiculo" />
+      <End Role="GETA_servicio" EntitySet="GETA_servicio" />
+    </AssociationSet>
+    <FunctionImport Name="detalle_factura" ReturnType="Collection(GETA_tallerModel.detalle_factura_Result)">
+      <Parameter Name="id_cliente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="detalle_factura1" ReturnType="Collection(GETA_tallerModel.detalle_factura1_Result)">
+      <Parameter Name="id_cliente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="factura" ReturnType="Collection(GETA_tallerModel.factura_Result)">
+      <Parameter Name="id_cliente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="factura_detalle" ReturnType="Collection(GETA_tallerModel.factura_detalle_Result)">
+      <Parameter Name="id_cliente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="factura_detalle1" ReturnType="Collection(GETA_tallerModel.factura_detalle1_Result)">
+      <Parameter Name="id_cliente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="factura_detalle10" ReturnType="Collection(GETA_tallerModel.factura_detalle10_Result)">
+      <Parameter Name="id_cliente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="factura_detalle11" ReturnType="Collection(GETA_tallerModel.factura_detalle11_Result)">
+      <Parameter Name="id_cliente" Mode="In" Type="Int32" />
+      <Parameter Name="id_mecanico" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="factura_detalle2" ReturnType="Collection(GETA_tallerModel.factura_detalle2_Result)">
+      <Parameter Name="id_cliente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="factura_detalle3" ReturnType="Collection(GETA_tallerModel.factura_detalle3_Result)">
+      <Parameter Name="id_cliente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="factura_detalle4" ReturnType="Collection(GETA_tallerModel.factura_detalle4_Result)">
+      <Parameter Name="id_cliente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="factura_detalle5" ReturnType="Collection(GETA_tallerModel.factura_detalle5_Result)">
+      <Parameter Name="id_cliente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="factura_detalle6" ReturnType="Collection(GETA_tallerModel.factura_detalle6_Result)">
+      <Parameter Name="id_cliente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="factura_detalle7" ReturnType="Collection(GETA_tallerModel.factura_detalle7_Result)">
+      <Parameter Name="id_cliente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="factura_detalle8" ReturnType="Collection(GETA_tallerModel.factura_detalle8_Result)">
+      <Parameter Name="id_cliente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="factura_detalle9" ReturnType="Collection(GETA_tallerModel.factura_detalle9_Result)">
+      <Parameter Name="id_cliente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="factura_detalleA1" ReturnType="Collection(GETA_tallerModel.factura_detalleA1_Result)">
+      <Parameter Name="id_cliente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="factura_detalleA2" ReturnType="Collection(GETA_tallerModel.factura_detalleA2_Result)">
+      <Parameter Name="id_cliente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="factura_detalleA3" ReturnType="Collection(GETA_tallerModel.factura_detalleA3_Result)">
+      <Parameter Name="id_cliente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="id_mecanico" ReturnType="Collection(GETA_tallerModel.id_mecanico_Result)">
+      <Parameter Name="id_cliente" Mode="In" Type="Int32" />
+      <Parameter Name="id_mecanico" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proceso_factura" ReturnType="Collection(GETA_tallerModel.proceso_factura_Result)">
+      <Parameter Name="id_cliente" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proceso_factura1" ReturnType="Collection(GETA_tallerModel.proceso_factura1_Result)">
+      <Parameter Name="id_cliente" Mode="In" Type="Double" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="detalle_factura_Result">
+    <Property Type="String" Name="NOMBRE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="TELEFONO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DIRECCION" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MATRICULA" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="MODELO" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="COLOR" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="NOMBRE_MECANICO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="APELLID0" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CEDULA" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="NOMBRE1" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="TELEFONO1" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="CORREO" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CORREO1" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="detalle_factura1_Result">
+    <Property Type="String" Name="NOMBRE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="TELEFONO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DIRECCION" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MATRICULA" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="MODELO" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="COLOR" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="NOMBRE_MECANICO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="APELLID0" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CEDULA" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="NOMBRE1" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="TELEFONO1" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="CORREO" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CORREO1" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="factura_Result">
+    <Property Type="String" Name="NOMBRE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="TELEFONO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DIRECCION" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MATRICULA" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="MODELO" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="COLOR" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="NOMBRE_MECANICO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="APELLID0" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CEDULA" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="NOMBRE1" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="TELEFONO1" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="CORREO" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CORREO1" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="factura_detalle_Result">
+    <Property Type="String" Name="NOMBRE_CLIENTE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="NOMBRE_APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_TELEFONO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CLIENTE_DIRECCION" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MATRICULA" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="MODELO" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="COLOR" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="NOMBRE_MECANICO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="APELLIDO_MECANICO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CEDULA_MECANICO" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="NOMBRE_TALLER" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="TELEFONO" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="CORREO_TALLER" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="factura_detalle1_Result">
+    <Property Type="String" Name="CLIENTE_NOMBRE_" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_TELEFONO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CLIENTE_DIRECCION" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MATRICULA" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="MODELO" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="COLOR" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="MECANICO_NOMBRE_" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="MECANICO_APELLIDO_" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="MECANICO_CEDULA_" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="C_TALLER_NOMBRE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="TELEFONO" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="TALLER_CORREO_" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="factura_detalle10_Result">
+    <Property Type="Double" Name="SUBTOTAL" Nullable="true" />
+    <Property Type="Double" Name="ITB" Nullable="true" />
+    <Property Type="Double" Name="TOTAL" Nullable="true" />
+    <Property Type="String" Name="CLIENTE_NOMBRE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_DIRECCION" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CLIENTE_TELEFONO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NOMBRE_MECANICO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="MECANICO_APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CEDULA" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="REPUESTOS" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="PRECIO" Nullable="true" />
+    <Property Type="String" Name="CANTIDAD" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="MANO_OBRA" Nullable="true" />
+    <Property Type="DateTimeOffset" Name="FECHA_REGISTRO" Nullable="true" />
+    <Property Type="String" Name="PAGO" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="factura_detalle11_Result">
+    <Property Type="Double" Name="SUBTOTAL" Nullable="true" />
+    <Property Type="Double" Name="ITB" Nullable="true" />
+    <Property Type="Double" Name="TOTAL" Nullable="true" />
+    <Property Type="Int32" Name="id_cliente" Nullable="false" />
+    <Property Type="String" Name="CLIENTE_NOMBRE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_DIRECCION" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CLIENTE_TELEFONO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NOMBRE_MECANICO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="MECANICO_APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CEDULA" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="REPUESTOS" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="PRECIO" Nullable="true" />
+    <Property Type="String" Name="CANTIDAD" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="MANO_OBRA" Nullable="true" />
+    <Property Type="DateTimeOffset" Name="FECHA_REGISTRO" Nullable="true" />
+    <Property Type="String" Name="PAGO" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="factura_detalle2_Result">
+    <Property Type="String" Name="CLIENTE_NOMBRE_" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_TELEFONO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CLIENTE_DIRECCION" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MATRICULA" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="MODELO" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="COLOR" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="MECANICO_NOMBRE_" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="MECANICO_APELLIDO_" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="MECANICO_CEDULA_" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="C_TALLER_NOMBRE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="TELEFONO" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="TALLER_CORREO_" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="SUBTOTAL" Nullable="true" />
+    <Property Type="Double" Name="ITB" Nullable="true" />
+    <Property Type="Double" Name="TOTAL" Nullable="true" />
+    <Property Type="String" Name="PAGO" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="factura_detalle3_Result">
+    <Property Type="String" Name="CLIENTE_NOMBRE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_TELEFONO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CLIENTE_DIRECCION" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MATRICULA" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="MODELO" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="COLOR" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="MECANICO_NOMBRE_" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="MECANICO_APELLIDO_" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="MECANICO_CEDULA_" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="C_TALLER_NOMBRE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="TELEFONO" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="TALLER_CORREO_" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="SUBTOTAL" Nullable="true" />
+    <Property Type="Double" Name="ITB" Nullable="true" />
+    <Property Type="Double" Name="TOTAL" Nullable="true" />
+    <Property Type="String" Name="PAGO" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="factura_detalle4_Result">
+    <Property Type="String" Name="CLIENTE_NOMBRE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_TELEFONO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CLIENTE_DIRECCION" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MATRICULA" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="MODELO" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="COLOR" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="MECANICO_NOMBRE_" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="MECANICO_APELLIDO_" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="MECANICO_CEDULA_" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="C_TALLER_NOMBRE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="TELEFONO" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="TALLER_CORREO_" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="factura_detalle5_Result">
+    <Property Type="Double" Name="SUBTOTAL" Nullable="true" />
+    <Property Type="Double" Name="ITB" Nullable="true" />
+    <Property Type="Double" Name="TOTAL" Nullable="true" />
+    <Property Type="String" Name="CLIENTE_NOMBRE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_DIRECCION" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CLIENTE_TELEFONO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NOMBRE_MECANICO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="MECANICO_APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CEDULA" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="REPUESTOS" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="PRECIO" Nullable="true" />
+    <Property Type="String" Name="CANTIDAD" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="MANO_OBRA" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="factura_detalle6_Result">
+    <Property Type="Double" Name="SUBTOTAL" Nullable="true" />
+    <Property Type="Double" Name="ITB" Nullable="true" />
+    <Property Type="Double" Name="TOTAL" Nullable="true" />
+    <Property Type="String" Name="CLIENTE_NOMBRE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_DIRECCION" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CLIENTE_TELEFONO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NOMBRE_MECANICO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="MECANICO_APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CEDULA" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="REPUESTOS" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="PRECIO" Nullable="true" />
+    <Property Type="String" Name="CANTIDAD" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="MANO_OBRA" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="factura_detalle7_Result">
+    <Property Type="Double" Name="SUBTOTAL" Nullable="true" />
+    <Property Type="Double" Name="ITB" Nullable="true" />
+    <Property Type="Double" Name="TOTAL" Nullable="true" />
+    <Property Type="String" Name="CLIENTE_NOMBRE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_DIRECCION" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CLIENTE_TELEFONO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NOMBRE_MECANICO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="MECANICO_APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CEDULA" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="REPUESTOS" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="PRECIO" Nullable="true" />
+    <Property Type="String" Name="CANTIDAD" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="MANO_OBRA" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="factura_detalle8_Result">
+    <Property Type="Double" Name="SUBTOTAL" Nullable="true" />
+    <Property Type="Double" Name="ITB" Nullable="true" />
+    <Property Type="Double" Name="TOTAL" Nullable="true" />
+    <Property Type="String" Name="CLIENTE_NOMBRE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_DIRECCION" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CLIENTE_TELEFONO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NOMBRE_MECANICO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="MECANICO_APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CEDULA" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="REPUESTOS" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="PRECIO" Nullable="true" />
+    <Property Type="String" Name="CANTIDAD" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="MANO_OBRA" Nullable="true" />
+    <Property Type="DateTimeOffset" Name="FECHA_REGISTRO" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="factura_detalle9_Result">
+    <Property Type="Double" Name="SUBTOTAL" Nullable="true" />
+    <Property Type="Double" Name="ITB" Nullable="true" />
+    <Property Type="Double" Name="TOTAL" Nullable="true" />
+    <Property Type="String" Name="CLIENTE_NOMBRE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_DIRECCION" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CLIENTE_TELEFONO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NOMBRE_MECANICO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="MECANICO_APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CEDULA" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="REPUESTOS" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="PRECIO" Nullable="true" />
+    <Property Type="String" Name="CANTIDAD" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="MANO_OBRA" Nullable="true" />
+    <Property Type="DateTimeOffset" Name="FECHA_REGISTRO" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="factura_detalleA1_Result">
+    <Property Type="Int32" Name="id_cliente" Nullable="false" />
+    <Property Type="String" Name="NOMBRE_CLIENTE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="APELLIDO_CLIENTE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="DIRECCION" Nullable="true" MaxLength="100" />
+    <Property Type="DateTimeOffset" Name="FECHA_REGISTRO" Nullable="true" />
+    <Property Type="String" Name="NOMBRE_MECANICO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="APELLIDO_MECANICO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CEDULA" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="NOMBRE_PIEZAS" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CANTIDAD" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="PRECIO" Nullable="true" />
+    <Property Type="Double" Name="MANO_OBRA" Nullable="true" />
+    <Property Type="Double" Name="SUB_TOTAL" Nullable="true" />
+    <Property Type="Double" Name="total" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="factura_detalleA2_Result">
+    <Property Type="Int32" Name="id_cliente" Nullable="false" />
+    <Property Type="String" Name="NOMBRE_CLIENTE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="APELLIDO_CLIENTE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="DIRECCION" Nullable="true" MaxLength="100" />
+    <Property Type="DateTimeOffset" Name="FECHA_REGISTRO" Nullable="true" />
+    <Property Type="String" Name="NOMBRE_MECANICO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="APELLIDO_MECANICO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CEDULA" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="NOMBRE_PIEZAS" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CANTIDAD" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="PRECIO" Nullable="true" />
+    <Property Type="Double" Name="MANO_OBRA" Nullable="true" />
+    <Property Type="Double" Name="SUB_TOTAL" Nullable="true" />
+    <Property Type="Double" Name="total" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="factura_detalleA3_Result">
+    <Property Type="Int32" Name="id_cliente" Nullable="false" />
+    <Property Type="String" Name="NOMBRE_CLIENTE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="APELLIDO_CLIENTE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="DIRECCION" Nullable="true" MaxLength="100" />
+    <Property Type="DateTimeOffset" Name="FECHA_REGISTRO" Nullable="true" />
+    <Property Type="String" Name="NOMBRE_MECANICO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="APELLIDO_MECANICO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CEDULA" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="NOMBRE_PIEZAS" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CANTIDAD" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="PRECIO" Nullable="true" />
+    <Property Type="Double" Name="MANO_OBRA" Nullable="true" />
+    <Property Type="Double" Name="SUB_TOTAL" Nullable="true" />
+    <Property Type="Double" Name="ITB" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="id_mecanico_Result">
+    <Property Type="Double" Name="SUBTOTAL" Nullable="true" />
+    <Property Type="Double" Name="ITB" Nullable="true" />
+    <Property Type="Double" Name="TOTAL" Nullable="true" />
+    <Property Type="Int32" Name="id_cliente" Nullable="false" />
+    <Property Type="String" Name="CLIENTE_NOMBRE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CLIENTE_DIRECCION" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CLIENTE_TELEFONO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NOMBRE_MECANICO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="MECANICO_APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CEDULA" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="REPUESTOS" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="PRECIO" Nullable="true" />
+    <Property Type="String" Name="CANTIDAD" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="MANO_OBRA" Nullable="true" />
+    <Property Type="DateTimeOffset" Name="FECHA_REGISTRO" Nullable="true" />
+    <Property Type="String" Name="PAGO" Nullable="true" MaxLength="30" />
+  </ComplexType>
+  <ComplexType Name="proceso_factura_Result">
+    <Property Type="String" Name="NOMBRE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="TELEFONO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DIRECCION" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MATRICULA" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="MODELO" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="COLOR" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="NOMBRE_MECANICO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="APELLID0" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CEDULA" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="NOMBRE1" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="TELEFONO1" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="CORREO" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CORREO1" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="proceso_factura1_Result">
+    <Property Type="String" Name="NOMBRE" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="APELLIDO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="TELEFONO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DIRECCION" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MATRICULA" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="MODELO" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="COLOR" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="NOMBRE_MECANICO" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="APELLID0" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="CEDULA" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="NOMBRE1" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="TELEFONO1" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="CORREO" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CORREO1" Nullable="true" MaxLength="100" />
+  </ComplexType>
+</Schema>

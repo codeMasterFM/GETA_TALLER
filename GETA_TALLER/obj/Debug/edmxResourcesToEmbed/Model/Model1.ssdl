@@ -1,0 +1,448 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GETA_tallerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="GETA_cliente">
+    <Key>
+      <PropertyRef Name="id_cliente" />
+    </Key>
+    <Property Name="id_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="60" />
+    <Property Name="APELLIDO" Type="varchar" MaxLength="60" />
+    <Property Name="DIRECCION" Type="varchar" MaxLength="100" />
+    <Property Name="TELEFONO" Type="varchar" MaxLength="50" />
+    <Property Name="FECHA_REGISTRO" Type="datetimeoffset" Precision="7" />
+    <Property Name="ESTADO" Type="int" />
+  </EntityType>
+  <EntityType Name="GETA_detalle_reparacion">
+    <Key>
+      <PropertyRef Name="id_detalle" />
+    </Key>
+    <Property Name="id_detalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CANTIDAD" Type="varchar" MaxLength="100" />
+    <Property Name="MANO_OBRA" Type="float" />
+    <Property Name="COMETARIO" Type="text" />
+    <Property Name="id_servicio" Type="int" />
+    <Property Name="id_inventario" Type="int" />
+    <Property Name="ESTADO" Type="int" />
+    <Property Name="id_mecanico" Type="int" />
+    <Property Name="id_vehiculo" Type="int" />
+  </EntityType>
+  <EntityType Name="GETA_factura">
+    <Key>
+      <PropertyRef Name="id_factura" />
+    </Key>
+    <Property Name="id_factura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SUBTOTAL" Type="float" />
+    <Property Name="ITB" Type="float" />
+    <Property Name="TOTAL" Type="float" />
+    <Property Name="fecha_salida" Type="datetime" />
+    <Property Name="id_mecanico" Type="int" />
+    <Property Name="id_cliente" Type="int" />
+    <Property Name="id_taller" Type="int" />
+    <Property Name="id_vehiculo" Type="int" />
+    <Property Name="PAGO" Type="varchar" MaxLength="30" />
+    <Property Name="ESTADO" Type="int" />
+    <Property Name="detalle" Type="int" />
+    <Property Name="id_inventario" Type="int" />
+    <Property Name="id_detalle" Type="int" />
+  </EntityType>
+  <EntityType Name="GETA_inventario_repuesto">
+    <Key>
+      <PropertyRef Name="id_inventario" />
+    </Key>
+    <Property Name="id_inventario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CATEGORIA" Type="varchar" MaxLength="60" />
+    <Property Name="NOMBRE_PIEZAS" Type="varchar" MaxLength="100" />
+    <Property Name="CANTIDAD_DISPONIBLE" Type="int" />
+    <Property Name="PRECIO" Type="float" />
+    <Property Name="ESTADO" Type="int" />
+    <Property Name="id_detalle" Type="int" />
+  </EntityType>
+  <EntityType Name="GETA_mecanico">
+    <Key>
+      <PropertyRef Name="id_mecanico" />
+    </Key>
+    <Property Name="id_mecanico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="60" />
+    <Property Name="APELLID0" Type="varchar" MaxLength="60" />
+    <Property Name="CEDULA" Type="varchar" MaxLength="100" />
+    <Property Name="ESTADO" Type="int" />
+    <Property Name="id_detalle" Type="int" />
+    <Property Name="ELIMINAR" Type="int" />
+    <Property Name="id_vehiculo" Type="int" />
+  </EntityType>
+  <EntityType Name="GETA_servicio">
+    <Key>
+      <PropertyRef Name="id_servicio" />
+    </Key>
+    <Property Name="id_servicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EVALUCION" Type="text" />
+    <Property Name="PRECIO" Type="int" />
+    <Property Name="id_vehiculo" Type="int" />
+    <Property Name="ESTADO" Type="int" />
+  </EntityType>
+  <EntityType Name="GETA_taller">
+    <Key>
+      <PropertyRef Name="id_taller" />
+    </Key>
+    <Property Name="id_taller" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RNC" Type="varchar" MaxLength="100" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="60" />
+    <Property Name="TELEFONO" Type="varchar" MaxLength="30" />
+    <Property Name="CORREO" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="GETA_usuario">
+    <Key>
+      <PropertyRef Name="id_usuario" />
+    </Key>
+    <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ROL" Type="int" />
+    <Property Name="NOMBRE" Type="varchar" MaxLength="60" />
+    <Property Name="USUARIO" Type="varchar" MaxLength="30" />
+    <Property Name="CONTRASENA" Type="varchar" MaxLength="30" />
+    <Property Name="id_mecanico" Type="int" />
+    <Property Name="ESTADO" Type="int" />
+  </EntityType>
+  <EntityType Name="GETA_vehiculo">
+    <Key>
+      <PropertyRef Name="id_vehiculo" />
+    </Key>
+    <Property Name="id_vehiculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MATRICULA" Type="varchar" MaxLength="20" />
+    <Property Name="MODELO" Type="varchar" MaxLength="30" />
+    <Property Name="COLOR" Type="varchar" MaxLength="30" />
+    <Property Name="id_cliente" Type="int" />
+    <Property Name="ESTADO" Type="int" />
+  </EntityType>
+  <Association Name="FK__GETA_deta__id_in__33D4B598">
+    <End Role="GETA_inventario_repuesto" Type="Self.GETA_inventario_repuesto" Multiplicity="0..1" />
+    <End Role="GETA_detalle_reparacion" Type="Self.GETA_detalle_reparacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_inventario_repuesto">
+        <PropertyRef Name="id_inventario" />
+      </Principal>
+      <Dependent Role="GETA_detalle_reparacion">
+        <PropertyRef Name="id_inventario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_deta__id_me__34C8D9D1">
+    <End Role="GETA_mecanico" Type="Self.GETA_mecanico" Multiplicity="0..1" />
+    <End Role="GETA_detalle_reparacion" Type="Self.GETA_detalle_reparacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_mecanico">
+        <PropertyRef Name="id_mecanico" />
+      </Principal>
+      <Dependent Role="GETA_detalle_reparacion">
+        <PropertyRef Name="id_mecanico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_deta__id_se__35BCFE0A">
+    <End Role="GETA_servicio" Type="Self.GETA_servicio" Multiplicity="0..1" />
+    <End Role="GETA_detalle_reparacion" Type="Self.GETA_detalle_reparacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_servicio">
+        <PropertyRef Name="id_servicio" />
+      </Principal>
+      <Dependent Role="GETA_detalle_reparacion">
+        <PropertyRef Name="id_servicio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_deta__id_ve__36B12243">
+    <End Role="GETA_vehiculo" Type="Self.GETA_vehiculo" Multiplicity="0..1" />
+    <End Role="GETA_detalle_reparacion" Type="Self.GETA_detalle_reparacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_vehiculo">
+        <PropertyRef Name="id_vehiculo" />
+      </Principal>
+      <Dependent Role="GETA_detalle_reparacion">
+        <PropertyRef Name="id_vehiculo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_fact__id_cl__37A5467C">
+    <End Role="GETA_cliente" Type="Self.GETA_cliente" Multiplicity="0..1" />
+    <End Role="GETA_factura" Type="Self.GETA_factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_cliente">
+        <PropertyRef Name="id_cliente" />
+      </Principal>
+      <Dependent Role="GETA_factura">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_fact__id_de__38996AB5">
+    <End Role="GETA_detalle_reparacion" Type="Self.GETA_detalle_reparacion" Multiplicity="0..1" />
+    <End Role="GETA_factura" Type="Self.GETA_factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_detalle_reparacion">
+        <PropertyRef Name="id_detalle" />
+      </Principal>
+      <Dependent Role="GETA_factura">
+        <PropertyRef Name="id_detalle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_fact__id_in__398D8EEE">
+    <End Role="GETA_inventario_repuesto" Type="Self.GETA_inventario_repuesto" Multiplicity="0..1" />
+    <End Role="GETA_factura" Type="Self.GETA_factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_inventario_repuesto">
+        <PropertyRef Name="id_inventario" />
+      </Principal>
+      <Dependent Role="GETA_factura">
+        <PropertyRef Name="id_inventario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_fact__id_me__3A81B327">
+    <End Role="GETA_mecanico" Type="Self.GETA_mecanico" Multiplicity="0..1" />
+    <End Role="GETA_factura" Type="Self.GETA_factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_mecanico">
+        <PropertyRef Name="id_mecanico" />
+      </Principal>
+      <Dependent Role="GETA_factura">
+        <PropertyRef Name="id_mecanico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_fact__id_ta__3B75D760">
+    <End Role="GETA_taller" Type="Self.GETA_taller" Multiplicity="0..1" />
+    <End Role="GETA_factura" Type="Self.GETA_factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_taller">
+        <PropertyRef Name="id_taller" />
+      </Principal>
+      <Dependent Role="GETA_factura">
+        <PropertyRef Name="id_taller" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_fact__id_ve__3C69FB99">
+    <End Role="GETA_vehiculo" Type="Self.GETA_vehiculo" Multiplicity="0..1" />
+    <End Role="GETA_factura" Type="Self.GETA_factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_vehiculo">
+        <PropertyRef Name="id_vehiculo" />
+      </Principal>
+      <Dependent Role="GETA_factura">
+        <PropertyRef Name="id_vehiculo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_inve__id_de__3D5E1FD2">
+    <End Role="GETA_detalle_reparacion" Type="Self.GETA_detalle_reparacion" Multiplicity="0..1" />
+    <End Role="GETA_inventario_repuesto" Type="Self.GETA_inventario_repuesto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_detalle_reparacion">
+        <PropertyRef Name="id_detalle" />
+      </Principal>
+      <Dependent Role="GETA_inventario_repuesto">
+        <PropertyRef Name="id_detalle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_meca__id_de__3E52440B">
+    <End Role="GETA_detalle_reparacion" Type="Self.GETA_detalle_reparacion" Multiplicity="0..1" />
+    <End Role="GETA_mecanico" Type="Self.GETA_mecanico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_detalle_reparacion">
+        <PropertyRef Name="id_detalle" />
+      </Principal>
+      <Dependent Role="GETA_mecanico">
+        <PropertyRef Name="id_detalle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_meca__id_ve__3F466844">
+    <End Role="GETA_vehiculo" Type="Self.GETA_vehiculo" Multiplicity="0..1" />
+    <End Role="GETA_mecanico" Type="Self.GETA_mecanico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_vehiculo">
+        <PropertyRef Name="id_vehiculo" />
+      </Principal>
+      <Dependent Role="GETA_mecanico">
+        <PropertyRef Name="id_vehiculo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_serv__id_ve__403A8C7D">
+    <End Role="GETA_vehiculo" Type="Self.GETA_vehiculo" Multiplicity="0..1" />
+    <End Role="GETA_servicio" Type="Self.GETA_servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_vehiculo">
+        <PropertyRef Name="id_vehiculo" />
+      </Principal>
+      <Dependent Role="GETA_servicio">
+        <PropertyRef Name="id_vehiculo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_usua__id_me__412EB0B6">
+    <End Role="GETA_mecanico" Type="Self.GETA_mecanico" Multiplicity="0..1" />
+    <End Role="GETA_usuario" Type="Self.GETA_usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_mecanico">
+        <PropertyRef Name="id_mecanico" />
+      </Principal>
+      <Dependent Role="GETA_usuario">
+        <PropertyRef Name="id_mecanico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GETA_vehi__id_cl__4222D4EF">
+    <End Role="GETA_cliente" Type="Self.GETA_cliente" Multiplicity="0..1" />
+    <End Role="GETA_vehiculo" Type="Self.GETA_vehiculo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GETA_cliente">
+        <PropertyRef Name="id_cliente" />
+      </Principal>
+      <Dependent Role="GETA_vehiculo">
+        <PropertyRef Name="id_cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="detalle_factura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_cliente" Type="int" Mode="In" />
+  </Function>
+  <Function Name="detalle_factura1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_cliente" Type="int" Mode="In" />
+  </Function>
+  <Function Name="factura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_cliente" Type="int" Mode="In" />
+  </Function>
+  <Function Name="factura_detalle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_cliente" Type="int" Mode="In" />
+  </Function>
+  <Function Name="factura_detalle1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_cliente" Type="int" Mode="In" />
+  </Function>
+  <Function Name="factura_detalle10" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_cliente" Type="int" Mode="In" />
+  </Function>
+  <Function Name="factura_detalle11" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_cliente" Type="int" Mode="In" />
+    <Parameter Name="id_mecanico" Type="int" Mode="In" />
+  </Function>
+  <Function Name="factura_detalle2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_cliente" Type="int" Mode="In" />
+  </Function>
+  <Function Name="factura_detalle3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_cliente" Type="int" Mode="In" />
+  </Function>
+  <Function Name="factura_detalle4" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_cliente" Type="int" Mode="In" />
+  </Function>
+  <Function Name="factura_detalle5" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_cliente" Type="int" Mode="In" />
+  </Function>
+  <Function Name="factura_detalle6" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_cliente" Type="int" Mode="In" />
+  </Function>
+  <Function Name="factura_detalle7" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_cliente" Type="int" Mode="In" />
+  </Function>
+  <Function Name="factura_detalle8" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_cliente" Type="int" Mode="In" />
+  </Function>
+  <Function Name="factura_detalle9" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_cliente" Type="int" Mode="In" />
+  </Function>
+  <Function Name="factura_detalleA1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_cliente" Type="int" Mode="In" />
+  </Function>
+  <Function Name="factura_detalleA2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_cliente" Type="int" Mode="In" />
+  </Function>
+  <Function Name="factura_detalleA3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_cliente" Type="int" Mode="In" />
+  </Function>
+  <Function Name="id_mecanico" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_cliente" Type="int" Mode="In" />
+    <Parameter Name="id_mecanico" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proceso_factura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_cliente" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proceso_factura1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id_cliente" Type="float" Mode="In" />
+  </Function>
+  <EntityContainer Name="GETA_tallerModelStoreContainer">
+    <EntitySet Name="GETA_cliente" EntityType="Self.GETA_cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GETA_detalle_reparacion" EntityType="Self.GETA_detalle_reparacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GETA_factura" EntityType="Self.GETA_factura" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GETA_inventario_repuesto" EntityType="Self.GETA_inventario_repuesto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GETA_mecanico" EntityType="Self.GETA_mecanico" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GETA_servicio" EntityType="Self.GETA_servicio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GETA_taller" EntityType="Self.GETA_taller" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GETA_usuario" EntityType="Self.GETA_usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GETA_vehiculo" EntityType="Self.GETA_vehiculo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__GETA_deta__id_in__33D4B598" Association="Self.FK__GETA_deta__id_in__33D4B598">
+      <End Role="GETA_inventario_repuesto" EntitySet="GETA_inventario_repuesto" />
+      <End Role="GETA_detalle_reparacion" EntitySet="GETA_detalle_reparacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_deta__id_me__34C8D9D1" Association="Self.FK__GETA_deta__id_me__34C8D9D1">
+      <End Role="GETA_mecanico" EntitySet="GETA_mecanico" />
+      <End Role="GETA_detalle_reparacion" EntitySet="GETA_detalle_reparacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_deta__id_se__35BCFE0A" Association="Self.FK__GETA_deta__id_se__35BCFE0A">
+      <End Role="GETA_servicio" EntitySet="GETA_servicio" />
+      <End Role="GETA_detalle_reparacion" EntitySet="GETA_detalle_reparacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_deta__id_ve__36B12243" Association="Self.FK__GETA_deta__id_ve__36B12243">
+      <End Role="GETA_vehiculo" EntitySet="GETA_vehiculo" />
+      <End Role="GETA_detalle_reparacion" EntitySet="GETA_detalle_reparacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_fact__id_cl__37A5467C" Association="Self.FK__GETA_fact__id_cl__37A5467C">
+      <End Role="GETA_cliente" EntitySet="GETA_cliente" />
+      <End Role="GETA_factura" EntitySet="GETA_factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_fact__id_de__38996AB5" Association="Self.FK__GETA_fact__id_de__38996AB5">
+      <End Role="GETA_detalle_reparacion" EntitySet="GETA_detalle_reparacion" />
+      <End Role="GETA_factura" EntitySet="GETA_factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_fact__id_in__398D8EEE" Association="Self.FK__GETA_fact__id_in__398D8EEE">
+      <End Role="GETA_inventario_repuesto" EntitySet="GETA_inventario_repuesto" />
+      <End Role="GETA_factura" EntitySet="GETA_factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_fact__id_me__3A81B327" Association="Self.FK__GETA_fact__id_me__3A81B327">
+      <End Role="GETA_mecanico" EntitySet="GETA_mecanico" />
+      <End Role="GETA_factura" EntitySet="GETA_factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_fact__id_ta__3B75D760" Association="Self.FK__GETA_fact__id_ta__3B75D760">
+      <End Role="GETA_taller" EntitySet="GETA_taller" />
+      <End Role="GETA_factura" EntitySet="GETA_factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_fact__id_ve__3C69FB99" Association="Self.FK__GETA_fact__id_ve__3C69FB99">
+      <End Role="GETA_vehiculo" EntitySet="GETA_vehiculo" />
+      <End Role="GETA_factura" EntitySet="GETA_factura" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_inve__id_de__3D5E1FD2" Association="Self.FK__GETA_inve__id_de__3D5E1FD2">
+      <End Role="GETA_detalle_reparacion" EntitySet="GETA_detalle_reparacion" />
+      <End Role="GETA_inventario_repuesto" EntitySet="GETA_inventario_repuesto" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_meca__id_de__3E52440B" Association="Self.FK__GETA_meca__id_de__3E52440B">
+      <End Role="GETA_detalle_reparacion" EntitySet="GETA_detalle_reparacion" />
+      <End Role="GETA_mecanico" EntitySet="GETA_mecanico" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_meca__id_ve__3F466844" Association="Self.FK__GETA_meca__id_ve__3F466844">
+      <End Role="GETA_vehiculo" EntitySet="GETA_vehiculo" />
+      <End Role="GETA_mecanico" EntitySet="GETA_mecanico" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_serv__id_ve__403A8C7D" Association="Self.FK__GETA_serv__id_ve__403A8C7D">
+      <End Role="GETA_vehiculo" EntitySet="GETA_vehiculo" />
+      <End Role="GETA_servicio" EntitySet="GETA_servicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_usua__id_me__412EB0B6" Association="Self.FK__GETA_usua__id_me__412EB0B6">
+      <End Role="GETA_mecanico" EntitySet="GETA_mecanico" />
+      <End Role="GETA_usuario" EntitySet="GETA_usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GETA_vehi__id_cl__4222D4EF" Association="Self.FK__GETA_vehi__id_cl__4222D4EF">
+      <End Role="GETA_cliente" EntitySet="GETA_cliente" />
+      <End Role="GETA_vehiculo" EntitySet="GETA_vehiculo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "600520a8-4503-44dc-85f8-90b85f96b293": {
+      "ProjectGuid": "600520a8-4503-44dc-85f8-90b85f96b293",
+      "DisplayName": "GETA_TALLER",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Archivos varios",
+      "ColorIndex": -1
+    },
+    "84853c27-a769-4d16-a349-ae92edcaf139": {
+      "ProjectGuid": "84853c27-a769-4d16-a349-ae92edcaf139",
+      "DisplayName": "pruebas",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}
